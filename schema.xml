@@ -201,6 +201,7 @@
     <!-- #5549 todo:format.bsh return not assigned -->
     <dynamicField name="format_*" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <!-- Local Subject Headings for searching and faceting -->
+    <dynamicField name="facet_*" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <!-- #5550 -->
     <dynamicField name="local_heading_facet_*" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="local_heading_*" type="text" indexed="true" stored="true" multiValued="true"/>
