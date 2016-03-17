@@ -44,7 +44,7 @@
        The examples below can be used to load some solr-contribs along 
        with their external dependencies.
     -->
-<--
+<!--
   <lib dir="/opt/solr/solr/contrib/clustering/lib/" regex=".*\.jar"/>
   <lib dir="/opt/solr/solr/dist/" regex="solr-clustering-\d.*\.jar"/>
 
@@ -561,7 +561,6 @@
     -->
     <arr name="last-components">
       <!--<str>spellcheck</str>-->
-      <str>elevator</str>
     </arr>
   </requestHandler>
   
@@ -572,23 +571,6 @@
     </arr>
   </requestHandler>
 
-  <searchComponent name="elevator" class="org.apache.solr.handler.component.QueryElevationComponent">
-    <!-- pick a fieldType to analyze queries -->
-    <str name="queryFieldType">string</str>
-    <str name="config-file">elevate.xml</str>
-  </searchComponent>
- 
-  <requestHandler name="/elevate" class="org.apache.solr.handler.component.SearchHandler" startup="lazy">
-    <lst name="defaults">
-      <str name="echoParams">explicit</str>
-    </lst>
-    <arr name="last-components">
-      <str>elevator</str>
-    </arr>
-  </requestHandler>
-  
-
-  
   <!-- Update request handler.  
   
        Note: Since solr1.1 requestHandlers requires a valid content type header if posted in 
