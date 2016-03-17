@@ -31,7 +31,7 @@
        that you fully re-index after changing this setting as it can
        affect both how text is indexed and queried.
     -->
-  <luceneMatchVersion>LUCENE_43</luceneMatchVersion>
+  <luceneMatchVersion>4.10.4</luceneMatchVersion>
 
   <!-- A 'dir' option by itself adds any files found in the directory 
        to the classpath, this is useful for including all jars in a
@@ -44,7 +44,7 @@
        The examples below can be used to load some solr-contribs along 
        with their external dependencies.
     -->
-
+<--
   <lib dir="/opt/solr/solr/contrib/clustering/lib/" regex=".*\.jar"/>
   <lib dir="/opt/solr/solr/dist/" regex="solr-clustering-\d.*\.jar"/>
 
@@ -56,6 +56,7 @@
 
   <lib dir="/opt/solr/solr/contrib/analysis-extras/lib/" regex=".*\.jar"/>
   <lib dir="/opt/solr/solr/contrib/analysis-extras/lucene-libs/" regex=".*\.jar"/>
+-->
 
   <lib dir="/opt/solr/solr/dist/" regex="solr-dataimporthandler-.*\.jar"/>
 
@@ -205,16 +206,20 @@
     
     <!-- fuer Atomic Updates notwendig -->
     
-     <!-- <updateLog>
+    <!--
+     <updateLog>
 	<str name="dir">${solr.ulog.dir:}</str>
-    </updateLog> -->
+    </updateLog>
+    -->
                     
     
-    <!-- <autoCommit> 
+    <!--
+    <autoCommit> 
       <maxDocs>100000000</maxDocs>
       <maxTime>600000</maxTime>
       <openSearcher>false</openSearcher>
-    </autoCommit> -->
+    </autoCommit>
+     -->
 
     <!-- <autoSoftCommit>
       <maxTime>600000</maxTime>
@@ -443,7 +448,14 @@
     </arr> -->
   </requestHandler>
   
-  
+  <!-- the following handler will be used for eligible dismax searches defined
+     in web/conf/searchspecs.yaml.  Searches relying on advanced features
+     incompatible with dismax will be sent to the standard handler instead.
+     You can use this handler definition to set global Dismax settings
+     (i.e. mm / bf).  If you need different settings for different types of
+     searches (i.e. Title vs. Author), you can also configure individual
+     settings in the searchspecs.yaml file.
+  -->
   <requestHandler name="dismax" class="solr.SearchHandler">
     <lst name="defaults">
      <str name="defType">dismax</str>
@@ -475,121 +487,7 @@
     </lst>
   </requestHandler>
 
-
-  <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
-    <lst name="defaults">
-      <str name="config">/data/solr/dswarm/data-config.xml</str>
-    </lst>
-  </requestHandler>
-
-<requestHandler name="/select" class="solr.SearchHandler">
-     <lst name="defaults">
-       <str name="echoParams">explicit</str>
-       <!-- Query settings -->
-       <str name="defType">edismax</str>
-       <str name="qf">
-          title^2.0 publisher^2.0 publishPlace^1.0 language^1.0
-<!--          title^10.0 publisher^5.0 publishPlace^3.0 language^2.0 -->
-       </str>
-       <str name="df">text</str>
-       <str name="mm">100%</str>
-       <str name="q.alt">*:*</str>
-       <str name="rows">10</str>
-       <str name="fl">*,score</str>
-<!--
-       <str name="mlt.qf">
-         text^0.5 features^1.0 name^1.2 sku^1.5 id^10.0 manu^1.1 cat^1.4
-         title^10.0 description^5.0 keywords^5.0 author^2.0 resourcename^1.0
-       </str>
-       <str name="mlt.fl">text,features,name,sku,id,manu,cat,title,description,keywords,author,resourcename</str>
-       <int name="mlt.count">3</int>
--->
-    </lst>
- </requestHandler>
-
-<!--
-  <requestHandler class="org.apache.solr.handler.component.SearchHandler" name="/suggest">
-    <lst name="defaults">
-      <str name="spellcheck">true</str>
-      <str name="spellcheck.dictionary">default</str>
-      <str name="spellcheck.onlyMorePopular">true</str>
-      <str name="spellcheck.count">5</str>
-      <str name="spellcheck.collate">true</str>
-    </lst>
-    <arr name="components">
-      <str>spellcheck</str>
-    </arr>
-  </requestHandler>
--->
-<updateRequestProcessorChain name="uuid">
-    <processor class="solr.UUIDUpdateProcessorFactory">
-	<str name="fieldName">id</str>
-    </processor>
-    <processor class="solr.RunUpdateProcessorFactory"/>
-</updateRequestProcessorChain>
-<!--
-  <requestHandler name="/browse" class="au.gov.nla.solr.handler.BrowseRequestHandler">
-    <str name="authIndexPath">${solr.solr.home:./solr}/authority/data/index</str>
-    <str name="bibIndexPath">${solr.solr.home:./solr}/biblio/data/index</str>
-
--->
-    <!-- These definitions should match the field names used in the authority index. -->
-<!--
-    <str name="preferredHeadingField">heading</str>
-    <str name="useInsteadHeadingField">use_for</str>
-    <str name="seeAlsoHeadingField">see_also</str>
-    <str name="scopeNoteField">scope_note</str>
-
-
-    <str name="sources">music_heading,music_heading_hmt,topic,author,title,lcc,dewey</str>
-
-    <lst name="music_heading">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/music_heading_browse.db</str>
-      <str name="field">music_heading</str>
-    </lst>
-    
-    <lst name="music_heading_hmt">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/music_heading_hmt_browse.db</str>
-      <str name="field">music_heading</str>
-    </lst>
-
-    <lst name="topic">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/topic_browse.db</str>
-      <str name="field">topic_browse</str>
-    </lst>
-
-    <lst name="author">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/author_browse.db</str>
-      <str name="field">author_browse</str>
-    </lst>
-
-    <lst name="title">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/title_browse.db</str>
-      <str name="field">title_fullStr</str>
-    </lst>
-
-    <lst name="lcc">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/lcc_browse.db</str>
-      <str name="field">callnumber-a</str>
-    </lst>
-
-    <lst name="dewey">
-      <str name="DBpath">${solr.solr.home:./solr}/alphabetical_browse/dewey_browse.db</str>
-      <str name="field">dewey-raw</str>
-      <str name="ignoreDiacritics">yes</str>
-    </lst>
-    
--->
-    <!--<str name="spellcheck">true</str>
-    <str name="spellcheck.onlyMorePopular">true</str>
-    <str name="spellcheck.count">4</str>-->
-
-<!--
-  </requestHandler>
--->
-
-<!--
-  <searchComponent name="spellcheck" class="org.apache.solr.handler.component.SpellCheckComponent">
+  <!--<searchComponent name="spellcheck" class="org.apache.solr.handler.component.SpellCheckComponent">
     <lst name="spellchecker">
       <str name="name">default</str>
       <str name="field">spellingShingle</str>
@@ -610,9 +508,8 @@
       <str name="classname">solr.IndexBasedSpellChecker</str>
       <str name="comparatorClass">freq</str>
     </lst>
-  </searchComponent>
+  </searchComponent>-->
   
--->
   <queryConverter name="queryConverter" class="org.apache.solr.spelling.SpellingQueryConverter"/>
 
   <!-- Search component for extracting terms (useful for sitemap generation) -->
@@ -818,5 +715,47 @@
     <healthcheck type="file">server-enabled</healthcheck>
     -->
   </admin>
+
+  <requestHandler class="org.apache.solr.handler.dataimport.DataImportHandler" name="/dataimport">
+    <lst name="defaults">
+      <str name="config">/data/solr/dswarm/data-config.xml</str>
+    </lst>
+  </requestHandler>
+
+  <requestHandler class="solr.SearchHandler" name="/select">
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <!-- Query settings -->
+      <str name="defType">edismax</str>
+      <str name="qf">title^2.0 publisher^2.0 publishPlace^1.0 language^1.0</str>
+      <str name="df">text</str>
+      <str name="mm">100%</str>
+      <str name="q.alt">*:*</str>
+      <str name="rows">10</str>
+      <str name="fl">*,score</str>
+    </lst>
+  </requestHandler>
+
+  <!--
+  <requestHandler class="org.apache.solr.handler.component.SearchHandler" name="/suggest">
+    <lst name="defaults">
+      <str name="spellcheck">true</str>
+      <str name="spellcheck.dictionary">default</str>
+      <str name="spellcheck.onlyMorePopular">true</str>
+      <str name="spellcheck.count">5</str>
+      <str name="spellcheck.collate">true</str>
+    </lst>
+    <arr name="components">
+      <str>spellcheck</str>
+    </arr>
+  </requestHandler>
+  -->
+
+  <updateRequestProcessorChain name="uuid">
+    <processor class="solr.UUIDUpdateProcessorFactory">
+      <str name="fieldName">id</str>
+    </processor>
+    <processor class="solr.RunUpdateProcessorFactory"/>
+  </updateRequestProcessorChain>
 
 </config>
