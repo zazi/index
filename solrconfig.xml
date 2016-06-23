@@ -685,7 +685,7 @@
 
   <requestHandler class="org.apache.solr.handler.dataimport.DataImportHandler" name="/dataimport">
     <lst name="defaults">
-      <str name="config">conf/dataimport-config.xml</str>
+      <str name="config">./conf/dataimport-config.xml</str>
     </lst>
   </requestHandler>
 
