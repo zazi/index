@@ -430,7 +430,6 @@
     </lst>
   </requestHandler>
 
-  <!--
   <searchComponent name="spellcheck" class="org.apache.solr.handler.component.SpellCheckComponent">
     <lst name="spellchecker">
       <str name="name">default</str>
