@@ -61,12 +61,14 @@
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stoppwoerter_de-en-kurz.txt"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stoppwoerter_de-en-kurz.txt"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
@@ -95,6 +97,18 @@
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stoppwoerter_de-en-kurz.txt"/>
         <filter class="solr.ShingleFilterFactory" maxShingleSize="2" outputUnigrams="false"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="textSort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
+      <analyzer>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+        <filter class="solr.TrimFilterFactory" />
+        <filter class="solr.PatternReplaceFilterFactory" 
+pattern="^(a|an|as|az|das|de|degl|degli|dei|del|de l|de la|dell|della|delle|dello|dem|den|der|des|die|du|een|egy|ein|eine|einem|einen|einer|eines|el|gli|het|i|il|l|la|las|le|les|lo|los|'n|o|os|'t|the|um|uma|umas|un|un|una|unas|une|uno|unos|uns)[^\w]+" 
+replacement="" 
+replace="all" 
+        />
       </analyzer>
     </fieldType>
     <!-- Text Field for Normalized ISBN/ISSN Numbers - take first chunk of text
@@ -163,12 +177,13 @@
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="authorized_mode" default="true" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="authorized_mode" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="fmt" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <!-- finc -->
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
@@ -198,7 +213,7 @@
     <field name="vf1_author_corp_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
     <field name="vf1_author_corp2" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="vf1_author_corp2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="vf1_author2_role" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="vf1_author2-role" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- <field name="auth_browse" type="string" indexed="true" stored="false" multiValued="true"/> -->
 
     <!-- finc:vufind3 -->
@@ -233,7 +248,7 @@
     <field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="title_new" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
-    <field name="title_sort" type="string" indexed="true" stored="true"/>
+    <field name="title_sort" type="textSort" indexed="true" stored="true"/>
     <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
     <field name="physical" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="publisher" type="textProper" indexed="true" stored="true" multiValued="true"/>
@@ -338,6 +353,10 @@
     <dynamicField name="udk_raw_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="udk_facet_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="date_*" type="date" indexed="true" stored="true"/>
+    <dynamicField name="*_cns" type="callnumberSearch" indexed="true" stored="true"/>
+    <dynamicField name="*_cns_mv" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
+    <dynamicField name="*_ct" type="codetokenized" indexed="true" stored="true"/>
+    <dynamicField name="*_ct_mv" type="codetokenized" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
     <dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_isn" type="isn" indexed="true" stored="true"/>
