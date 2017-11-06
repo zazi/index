@@ -189,7 +189,7 @@ replace="all"
     <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
-    <!-- field name="format" type="string" indexed="true" stored="true" multiValued="true"/ -->
+    <field name="fmt" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <!-- finc -->
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
@@ -359,6 +359,10 @@ replace="all"
     <dynamicField name="udk_raw_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="udk_facet_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="date_*" type="date" indexed="true" stored="true"/>
+    <dynamicField name="*_cns" type="callnumberSearch" indexed="true" stored="true"/>
+    <dynamicField name="*_cns_mv" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
+    <dynamicField name="*_ct" type="codetokenized" indexed="true" stored="true"/>
+    <dynamicField name="*_ct_mv" type="codetokenized" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
     <dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_isn" type="isn" indexed="true" stored="true"/>
