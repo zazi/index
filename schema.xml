@@ -214,6 +214,7 @@ replace="all"
     <field name="vf1_author_corp2" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="vf1_author_corp2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="vf1_author2-role" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="vf1_author2_role" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- <field name="auth_browse" type="string" indexed="true" stored="false" multiValued="true"/> -->
 
     <!-- finc:vufind3 -->
@@ -261,6 +262,7 @@ replace="all"
     <field name="description" type="text" indexed="true" stored="true"/>
     <field name="contents" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="url" type="string" indexed="false" stored="true" multiValued="true"/>
+    <field name="copies_url" type="string" indexed="false" stored="true" multiValued="true"/>
     <field name="thumbnail" type="string" indexed="false" stored="true"/>
     <!-- Catalog Specific Fields -->
     <field name="lccn" type="string" indexed="true" stored="true"/>
