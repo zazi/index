@@ -181,6 +181,7 @@ replace="all"
     <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="owner" type="string" indexed="false" stored="true" multiValued="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="fmt" type="string" indexed="true" stored="true" multiValued="true"/>
