@@ -102,13 +102,9 @@
     <fieldType name="textSort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <filter class="solr.LowerCaseFilterFactory" />
-        <filter class="solr.TrimFilterFactory" />
-        <filter class="solr.PatternReplaceFilterFactory" 
-pattern="^(a|an|as|az|das|de|degl|degli|dei|del|de l|de la|dell|della|delle|dello|dem|den|der|des|die|du|een|egy|ein|eine|einem|einen|einer|eines|el|gli|het|i|il|l|la|las|le|les|lo|los|'n|o|os|'t|the|um|uma|umas|un|un|una|unas|une|uno|unos|uns)[^\w]+" 
-replacement="" 
-replace="all" 
-        />
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.TrimFilterFactory"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="^(a|an|as|az|das|de|degl|degli|dei|del|de l|de la|dell|della|delle|dello|dem|den|der|des|die|du|een|egy|ein|eine|einem|einen|einer|eines|el|gli|het|i|il|l|la|las|le|les|lo|los|'n|o|os|'t|the|um|uma|umas|un|un|una|unas|une|uno|unos|uns)[^\w]+" replacement="" replace="all"/>
       </analyzer>
     </fieldType>
     <!-- Text Field for Normalized ISBN/ISSN Numbers - take first chunk of text
