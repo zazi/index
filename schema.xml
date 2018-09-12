@@ -183,7 +183,6 @@ replace="all"
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="authorized_mode" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -206,7 +205,6 @@ replace="all"
     <field name="author_id" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="author_corp_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
-    <field name="authorStr" type="textFacet" indexed="true" stored="false"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="false" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true"/>    
 
@@ -225,11 +223,9 @@ replace="all"
     <!-- finc:vufind3 -->
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="author_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_variant" type="text" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="author_role" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author2_variant" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="author2_role" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
@@ -237,8 +233,6 @@ replace="all"
     <field name="author_corporate2" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate2_role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_fuller" type="textProper" indexed="true" stored="true" multiValued="true" />
-    <field name="author2_fuller" type="textProper" indexed="true" stored="true" multiValued="true" />
     <field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
 
 
