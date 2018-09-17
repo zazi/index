@@ -327,9 +327,6 @@ replace="all"
     <field name="container_start_page" type="text" indexed="true" stored="true"/>
     <field name="container_reference" type="text" indexed="true" stored="true"/>
     <!-- Hierarchy Fields -->
-    <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
-    <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="hierarchytype" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="hierarchy_top_id" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="hierarchy_top_title" type="string" indexed="true" stored="true" multiValued="true"/>
