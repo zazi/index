@@ -208,19 +208,7 @@ replace="all"
     <field name="author_corp_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="authorStr" type="textFacet" indexed="true" stored="false"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="false" multiValued="true"/>
-    <field name="author_sort" type="string" indexed="true" stored="true"/>    
-
-    <!-- finc:vufind1 author -->
-    <field name="vf1_author" type="textProper" indexed="true" stored="true" termVectors="true"/>
-    <field name="vf1_author_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
-    <field name="vf1_author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="vf1_author2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="vf1_author_corp" type="textProper" indexed="true" stored="true" termVectors="true"/>
-    <field name="vf1_author_corp_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
-    <field name="vf1_author_corp2" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="vf1_author_corp2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="vf1_author2-role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <!-- <field name="auth_browse" type="string" indexed="true" stored="false" multiValued="true"/> -->
+    <field name="author_sort" type="string" indexed="true" stored="true"/>
 
     <!-- finc:vufind3 -->
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
