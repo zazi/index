@@ -202,7 +202,7 @@ replace="all"
     <!-- finc:vufindx -->
     <field name="author_id" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
-    <field name="author_corp_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
+    <field name="author_corporate_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="false" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true"/>
 
