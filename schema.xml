@@ -174,16 +174,6 @@ replace="all"
     <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- field name="format" type="string" indexed="true" stored="true" multiValued="true"/ -->
     <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
-    <!-- finc -->
-    <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
-    <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
-    <field name="rsn" type="string" indexed="true" stored="true" multiValued="true"/>
-
-    <field name="purchase" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="misc_dech1" type="codetokenized" indexed="true" stored="false" multiValued="true"/>
-    <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="zdb" type="string" indexed="true" stored="true" multiValued="false"/>
 
     <!-- finc:vufindx -->
     <field name="author_id" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -310,13 +300,21 @@ replace="all"
     <field name="last_indexed" type="date" indexed="true" stored="true" docValues="true" default="NOW"/>
     <!-- finc -->
     <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
+    <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="misc_dech1" type="codetokenized" indexed="true" stored="false" multiValued="true"/>
     <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
     <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="purchase" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
+    <field name="rsn" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
+    <field name="zdb" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <!-- Dynamic fields for customization without schema modification -->
     <dynamicField name="callnumber_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="barcode_*" type="code" indexed="true" stored="true" multiValued="true"/>
