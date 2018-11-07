@@ -293,19 +293,16 @@ replace="all"
     <field name="container_start_page" type="text" indexed="true" stored="true"/>
     <field name="container_reference" type="text" indexed="true" stored="true"/>
     <!-- Hierarchy Fields -->
-    <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
-    <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchytype" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="hierarchy_top_id" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchy_top_title" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchy_parent_id" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchy_parent_title" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchy_sequence" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="is_hierarchy_id" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="is_hierarchy_title" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="title_in_hierarchy" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="hierarchy_browse" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="hierarchytype" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="hierarchy_top_id" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="hierarchy_top_title" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="hierarchy_parent_id" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="hierarchy_parent_title" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="hierarchy_sequence" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="is_hierarchy_id" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="is_hierarchy_title" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="title_in_hierarchy" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="hierarchy_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
     <!-- Used for loading correct record driver -->
     <field name="recordtype" default="default" type="string" indexed="false" stored="true" docValues="true"/>
     <!-- Tracking fields to keep track of oldest and most recent index times -->
@@ -315,6 +312,9 @@ replace="all"
     <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
+    <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <!-- Dynamic fields for customization without schema modification -->
