@@ -171,10 +171,9 @@ replace="all"
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <!-- Generic Fields -->
-    <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
-    <!-- field name="format" type="string" indexed="true" stored="true" multiValued="true"/ -->
-    <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" termVectors="true"/>
-
+    <field name="language" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    
     <!-- finc:vufindx -->
     <field name="author_id" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
