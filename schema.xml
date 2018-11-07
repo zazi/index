@@ -167,13 +167,9 @@ replace="all"
     <field name="spelling" type="textSpell" indexed="true" stored="true" multiValued="true"/>
     <field name="spellingShingle" type="textSpellShingle" indexed="true" stored="true" multiValued="true"/>
     <!-- Institutional Fields -->
-    <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true"/>
-    <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="building" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
     <!-- field name="format" type="string" indexed="true" stored="true" multiValued="true"/ -->
@@ -316,7 +312,11 @@ replace="all"
     <field name="first_indexed" type="date" indexed="true" stored="true"/>
     <field name="last_indexed" type="date" indexed="true" stored="true"/>
     <!-- finc -->
+    <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
+    <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
+    <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <!-- Dynamic fields for customization without schema modification -->
     <dynamicField name="callnumber_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="barcode_*" type="code" indexed="true" stored="true" multiValued="true"/>
