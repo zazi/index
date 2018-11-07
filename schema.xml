@@ -353,18 +353,13 @@ replace="all"
   <copyField source="allfields" dest="spelling"/>
   <!-- ** Complex, Shingle spelling -->
   <copyField source="author" dest="spellingShingle"/>
-  <copyField source="author2" dest="spellingShingle"/>
-  <copyField source="author_corporate" dest="spellingShingle"/>
-  <copyField source="author_corporate2" dest="spellingShingle"/>
   <copyField source="title" dest="spellingShingle"/>
   <copyField source="contents" dest="spellingShingle"/>
   <copyField source="series" dest="spellingShingle"/>
-  <copyField source="series2" dest="spellingShingle"/>
   <copyField source="topic" dest="spellingShingle"/>
   <!-- CopyFields for Faceting on Text -->
   <copyField source="title_full" dest="title_fullStr"/>
   <copyField source="title_full" dest="title_full_unstemmed"/>
-  <!-- copyField source="author" dest="authorStr"/ -->
   <copyField source="author" dest="author_facet"/>
   <copyField source="author2" dest="author_facet"/>
   <copyField source="author_corporate" dest="author_facet"/>
