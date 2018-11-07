@@ -329,14 +329,18 @@ replace="all"
     <dynamicField name="local_heading_*" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="local_class_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="udk_raw_*" type="code" indexed="true" stored="true" multiValued="true"/>
-    <dynamicField name="udk_facet_*" type="string" indexed="true" stored="true" multiValued="true"/>
-    <dynamicField name="date_*" type="date" indexed="true" stored="true"/>
-    <dynamicField name="*_date" type="date" indexed="true" stored="true"/>
-    <dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true"/>
+    <dynamicField name="udk_facet_*" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <dynamicField name="*_cns" type="callnumberSearch" indexed="true" stored="true"/>
+    <dynamicField name="*_cns_mv" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
+    <dynamicField name="*_ct" type="codetokenized" indexed="true" stored="true"/>
+    <dynamicField name="*_ct_mv" type="codetokenized" indexed="true" stored="true" multiValued="true"/>
+    <!-- Dynamic fields for customization without schema modification -->
+    <dynamicField name="*_date" type="date" indexed="true" stored="true" docValues="true"/>
+    <dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <dynamicField name="*_isn" type="isn" indexed="true" stored="true"/>
     <dynamicField name="*_isn_mv" type="isn" indexed="true" stored="true" multiValued="true"/>
-    <dynamicField name="*_str" type="string" indexed="true" stored="true"/>
-    <dynamicField name="*_str_mv" type="string" indexed="true" stored="true" multiValued="true"/>
+    <dynamicField name="*_str" type="string" indexed="true" stored="true" docValues="true"/>
+    <dynamicField name="*_str_mv" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <dynamicField name="*_txt" type="text" indexed="true" stored="true"/>
     <dynamicField name="*_txt_mv" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_txtF" type="textFacet" indexed="true" stored="true"/>
@@ -345,6 +349,8 @@ replace="all"
     <dynamicField name="*_txtP_mv" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*_random" type="random"/>
     <dynamicField name="*_boolean" type="boolean" indexed="true" stored="true"/>
+    <dynamicField name="*_geo" type="geo" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_geo_mv" type="geo" indexed="true" stored="true" multiValued="true"/>
   </fields>
   <uniqueKey>id</uniqueKey>
   <defaultSearchField>allfields</defaultSearchField>
