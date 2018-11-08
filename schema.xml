@@ -197,25 +197,23 @@ replace="all"
     <field name="url" type="string" indexed="false" stored="true" multiValued="true"/>
     <field name="thumbnail" type="string" indexed="false" stored="true"/>
     <!-- Catalog Specific Fields -->
-    <field name="lccn" type="string" indexed="true" stored="true"/>
-    <field name="ctrlnum" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="urn" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="lccn" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="ctrlnum" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="isbn" type="isn" indexed="true" stored="true" multiValued="true"/>
     <field name="issn" type="isn" indexed="true" stored="true" multiValued="true"/>
-    <field name="ismn" type="isn" indexed="true" stored="true" multiValued="true"/>
-    <field name="oclc_num" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="callnumber-first" type="string" indexed="true" stored="true"/>
-    <field name="callnumber-subject" type="string" indexed="true" stored="true"/>
-    <field name="callnumber-label" type="string" indexed="true" stored="true"/>
-    <field name="callnumber-sort" type="string" indexed="true" stored="true"/>
-    <field name="callnumber-raw" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="oclc_num" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="callnumber-first" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="callnumber-subject" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="callnumber-label" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="callnumber-sort" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="callnumber-raw" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="callnumber-search" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
-    <field name="dewey-hundreds" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="dewey-tens" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="dewey-ones" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="dewey-full" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="dewey-sort" type="string" indexed="true" stored="true"/>
-    <field name="dewey-raw" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="dewey-hundreds" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="dewey-tens" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="dewey-ones" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="dewey-full" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="dewey-sort" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="dewey-raw" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="dewey-search" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
     <field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author2_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
@@ -228,33 +226,22 @@ replace="all"
     <field name="dateSpan" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="series" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="series2" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="series_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="topic" type="text" indexed="true" stored="true" termVectors="true" multiValued="true"/>
-    <field name="topic_id" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="topic_ref" type="text" indexed="true" stored="false" multiValued="true"/>
+    <field name="topic" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="topic_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="topic_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="topic_browse" type="string" indexed="true" stored="false" multiValued="true"/>
-    <field name="author_browse" type="string" indexed="true" stored="false" multiValued="true"/>
+    <field name="topic_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
+    <field name="author_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
     <field name="genre" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="genre_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="geographic" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="geographic_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="geogr_code" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="geogr_code_person" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="era" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="era_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="footnote" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="dissertation_note" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="performer_note" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="illustrated" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="long_lat" type="textFacet" indexed="true" stored="true" multiValued="false"/>
-    <field name="music_heading" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="music_heading_browse" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="film_heading" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="rvk_facet" type="code" indexed="true" stored="true" termVectors="true" multiValued="true"/>
-    <field name="rvk_label" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="rvk_path" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="illustrated" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <!-- Used for geographic search and display fields -->
+    <field name="long_lat" type="geo" indexed="true" stored="true" multiValued="true"/>
+    <field name="long_lat_display" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="long_lat_label" type="string" indexed="false" stored="true" multiValued="true" docValues="true"/>
     <!-- Container fields (i.e. for describing journal containing an article) -->
     <field name="container_title" type="text" indexed="true" stored="true"/>
     <field name="container_volume" type="text" indexed="true" stored="true"/>
@@ -289,23 +276,39 @@ replace="all"
     <field name="author_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
+    <field name="dissertation_note" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="film_heading" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="footnote" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="geogr_code" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
+    <field name="geogr_code_person" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="imprint" type="string" indexed="false" stored="true" multiValued="false" docValues="true"/>
+    <field name="ismn" type="isn" indexed="true" stored="true" multiValued="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="misc_dech1" type="codetokenized" indexed="true" stored="false" multiValued="true"/>
     <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
     <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="music_heading_browse" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="music_heading" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="performer_note" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="publishPlace" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="purchase" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
     <field name="rsn" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="rvk_facet" type="code" indexed="true" stored="true" termVectors="true" multiValued="true"/>
+    <field name="rvk_label" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="rvk_path" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="series_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
     <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
+    <field name="topic_id" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="topic_ref" type="text" indexed="true" stored="false" multiValued="true"/>
+    <field name="urn" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="zdb" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <!-- Dynamic fields for customization without schema modification -->
     <dynamicField name="callnumber_*" type="code" indexed="true" stored="true" multiValued="true"/>
