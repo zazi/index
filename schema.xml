@@ -177,28 +177,21 @@ replace="all"
     <field name="author_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
-    <field name="title" type="text" indexed="true" termVectors="true" stored="true"/>
+    <field name="title" type="text" indexed="true" stored="true"/>
+    <field name="title_sort" type="textSort" indexed="true" stored="true"/>
     <field name="title_part" type="text" indexed="true" stored="true"/>
     <field name="title_sub" type="text" indexed="true" stored="true"/>
     <field name="title_short" type="text" indexed="true" stored="true"/>
     <field name="title_full" type="text" indexed="true" stored="true"/>
     <field name="title_full_unstemmed" type="textProper" indexed="true" stored="true"/>
-    <field name="title_fullStr" type="string" indexed="true" stored="true"/>
+    <field name="title_fullStr" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="title_auth" type="text" indexed="true" stored="true"/>
-    <field name="title_alt" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="title_new" type="text" indexed="true" stored="true" multiValued="true"/>    
-    <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
-    <field name="title_sort" type="textSort" indexed="true" stored="true"/>
-    <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
-    <field name="physical" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="physical" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="publisher" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="publisherStr" type="string" indexed="true" stored="false" multiValued="true"/>
-    <field name="publishDate" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="publishDateSort" type="string" indexed="true" stored="true"/>
-    <field name="publishPlace" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="imprint" type="string" indexed="false" stored="true" multiValued="false"/>
-    <field name="edition" type="string" indexed="true" stored="true"/>
+    <field name="publisherStr" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
+    <field name="publishDate" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="publishDateSort" type="string" indexed="true" stored="true" docValues="true"/>
+    <field name="edition" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="description" type="text" indexed="true" stored="true"/>
     <field name="contents" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="url" type="string" indexed="false" stored="true" multiValued="true"/>
@@ -229,7 +222,10 @@ replace="all"
     <field name="author_corporate" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="dateSpan" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_alt" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_new" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="dateSpan" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="series" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="series2" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="series_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
@@ -294,18 +290,22 @@ replace="all"
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="imprint" type="string" indexed="false" stored="true" multiValued="false" docValues="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
     <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="misc_dech1" type="codetokenized" indexed="true" stored="false" multiValued="true"/>
     <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
     <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="multipart_set" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="publishPlace" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="purchase" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="record_id" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
     <field name="rsn" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
     <field name="zdb" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <!-- Dynamic fields for customization without schema modification -->
     <dynamicField name="callnumber_*" type="code" indexed="true" stored="true" multiValued="true"/>
