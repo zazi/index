@@ -173,25 +173,10 @@ replace="all"
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
+    <field name="author_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
-    
-    <!-- finc:vufind3 -->
-    <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
-    <field name="author_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author2_role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate_role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate2" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_corporate2_role" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
-
-
     <field name="title" type="text" indexed="true" termVectors="true" stored="true"/>
     <field name="title_part" type="text" indexed="true" stored="true"/>
     <field name="title_sub" type="text" indexed="true" stored="true"/>
@@ -239,7 +224,11 @@ replace="all"
     <field name="dewey-sort" type="string" indexed="true" stored="true"/>
     <field name="dewey-raw" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="dewey-search" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
-
+    <field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="author2_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="author_corporate" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_corporate_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="dateSpan" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="series" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="series2" type="text" indexed="true" stored="true" multiValued="true"/>
@@ -294,8 +283,14 @@ replace="all"
     <field name="last_indexed" type="date" indexed="true" stored="true" docValues="true" default="NOW"/>
     <!-- finc -->
     <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="author2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_corporate2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_corporate2_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="author_corporate2" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <field name="author_corporate_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="author_id" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="author_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_ref" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
