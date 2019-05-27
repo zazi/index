@@ -38,12 +38,12 @@
   <!-- Used to specify an alternate directory to hold all index data
        other than the default ./data under the Solr home.
        If replication is in use, this should match the replication configuration.
-  <dataDir>${solr.solr.home:./solr}/biblio</dataDir>
   -->
+  <dataDir>${solr.data.dir:}</dataDir>
 
-  <lib dir="../../vendor/contrib/analysis-extras/lib" regex=".*\.jar" />
-  <lib dir="../../vendor/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
-  <lib dir="../jars" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:}/contrib/analysis-extras/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
 
   <indexConfig>
 
