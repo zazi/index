@@ -198,6 +198,8 @@ replace="all"
 
     <field name="format" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
+    <!-- author_variant is a VuFind standard Solr schema field, but is not utilized in finc context -->
+    <field name="author_variant" type="text" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="author_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
@@ -240,9 +242,15 @@ replace="all"
     <field name="dewey-raw" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="dewey-search" type="callnumberSearch" indexed="true" stored="true" multiValued="true"/>
     <field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <!-- author2_variant is a VuFind standard Solr schema field, but is not utilized in finc context -->
+    <field name="author2_variant" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="author2_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_corporate" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <!-- author_fuller is a VuFind standard Solr schema field, but is not utilized in finc context -->
+    <field name="author_fuller" type="textProper" indexed="true" stored="true" multiValued="true"/>
+    <!-- author2_fuller is a VuFind standard Solr schema field, but is not utilized in finc context -->
+    <field name="author2_fuller" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="title_alt" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
