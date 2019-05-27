@@ -190,12 +190,13 @@ replace="all"
     <field name="spelling" type="textSpell" indexed="true" stored="true" multiValued="true"/>
     <field name="spellingShingle" type="textSpellShingle" indexed="true" stored="true" multiValued="true"/>
     <!-- Institutional Fields -->
-    <field name="institution" default="finc" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="institution" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
-    <field name="format" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+
+    <field name="format" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="author_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
@@ -283,7 +284,7 @@ replace="all"
     <field name="title_in_hierarchy" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="hierarchy_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
     <!-- Used for loading correct record driver -->
-    <field name="recordtype" default="default" type="string" indexed="false" stored="true" docValues="true"/>
+    <field name="recordtype" type="string" indexed="false" stored="true" docValues="true"/>
     <!-- Tracking fields to keep track of oldest and most recent index times -->
     <field name="first_indexed" type="date" indexed="true" stored="true" docValues="true"/>
     <field name="last_indexed" type="date" indexed="true" stored="true" docValues="true" default="NOW"/>
