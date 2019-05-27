@@ -195,7 +195,6 @@ replace="all"
     <field name="building" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
-
     <field name="format" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <!-- author_variant is a VuFind standard Solr schema field, but is not utilized in finc context -->
@@ -205,7 +204,6 @@ replace="all"
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="title" type="text" indexed="true" stored="true"/>
     <field name="title_sort" type="textSort" indexed="true" stored="true"/>
-    <field name="title_part" type="text" indexed="true" stored="true"/>
     <field name="title_sub" type="text" indexed="true" stored="true"/>
     <field name="title_short" type="text" indexed="true" stored="true"/>
     <field name="title_full" type="text" indexed="true" stored="true"/>
