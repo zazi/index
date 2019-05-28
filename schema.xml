@@ -200,6 +200,7 @@ replace="all"
     <!-- author_variant is a VuFind standard Solr schema field, but is not utilized in finc context -->
     <field name="author_variant" type="text" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <field name="author_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <!-- author_facet is a field that will be filled by copyfields only (actually from author, author2, author_corporate and author_corporate2), i.e., separate mappings are not really necessary -->
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="title" type="text" indexed="true" stored="true"/>
@@ -260,6 +261,7 @@ replace="all"
     <field name="topic_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
     <field name="topic_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="topic_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
+    <!-- author_browse is a field that will be filled by copyfields only (actually from author, author2, and author_corporate), i.e., separate mappings are not really necessary -->
     <field name="author_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
     <field name="genre" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="genre_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
