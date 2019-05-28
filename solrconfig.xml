@@ -15,6 +15,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+
 <config>
   <!-- Set this to 'false' if you want solr to continue working after it has
        encountered an severe configuration error.  In a production environment,
@@ -31,17 +32,18 @@
        that you fully re-index after changing this setting as it can
        affect both how text is indexed and queried.
     -->
-  <luceneMatchVersion>5.5.0</luceneMatchVersion>
+  <luceneMatchVersion>5.5.2</luceneMatchVersion>
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
 
   <!-- Used to specify an alternate directory to hold all index data
        other than the default ./data under the Solr home.
        If replication is in use, this should match the replication configuration.
-  <dataDir>${solr.solr.home:./solr}/biblio</dataDir>
   -->
+  <dataDir>${solr.data.dir:}</dataDir>
 
-  <lib dir="/opt/solr/solr/contrib/analysis-extras/lib" regex=".*\.jar" />
-  <lib dir="/opt/solr/solr/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
-  <lib dir="/opt/solr/solr/dist/" regex="solr-dataimporthandler-.*\.jar"/>
+  <lib dir="${solr.install.dir:}/contrib/analysis-extras/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
 
   <indexConfig>
 
@@ -79,7 +81,7 @@
          The latest commit point should always be preserved regardless
          of the criteria.
     -->
-    <deletionPolicy class="solr.SolrDeletionPolicy">
+   <deletionPolicy class="solr.SolrDeletionPolicy">
       <!-- Keep only optimized commit points -->
       <str name="keepOptimizedOnly">false</str>
       <!-- The maximum number of commit points to be kept -->
@@ -107,7 +109,7 @@
 
         For more details see http://wiki.apache.org/solr/SolrJmx
   -->
-  <jmx/>
+  <jmx />
 
   <!-- the default high-performance update handler -->
   <updateHandler class="solr.DirectUpdateHandler2">
@@ -134,16 +136,15 @@
          maxDocs - number of updates since last commit is greater than this
          maxTime - oldest uncommited update (in ms) is this long ago
     -->
-    <!--
-    <autoCommit> 
-      <maxTime>600000</maxTime>
-      <maxDocs>100000000</maxDocs>
-      <openSearcher>false</openSearcher>
-    </autoCommit>
-    -->
-
-    <!--<autoSoftCommit>
-      <maxTime>600000</maxTime>
+     <autoCommit>
+       <maxDocs>500000</maxDocs>
+       <maxTime>600000</maxTime>
+       
+       <openSearcher>false</openSearcher>
+     </autoCommit>
+     
+     <!--<autoSoftCommit>
+        <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
     </autoSoftCommit>-->
 
     <!-- The RunExecutableListener executes an external command.
@@ -199,7 +200,7 @@
     <!-- VuFind uses the default Solr settings for filterCache, which should produce a high
          hit rate. You can carefully adjust the filterCache and check the hit ratio in 
          admin>plugins>stats -->  
-    <filterCache class="solr.FastLRUCache" size="300000" initialSize="300000" autowarmCount="50000"/>
+    <filterCache class="solr.FastLRUCache" size="300000" initialSize="300000" autowarmCount="50000" cleanupThread="true"/>
 
    <!-- queryResultCache caches results of searches - ordered lists of
          document ids (DocList) based on a query, a sort, and the range
@@ -209,6 +210,13 @@
   <!-- documentCache caches Lucene Document objects (the stored fields for each document).
        Since Lucene internal document ids are transient, this cache will not be autowarmed.  -->
     <documentCache class="solr.LRUCache" size="50000" initialSize="50000" autowarmCount="10000"/>
+
+    <fieldValueCache
+	class="solr.FastLRUCache"
+	size="50000"
+	autowarmCount="15"
+	showItems="15"
+	cleanupThread="true"/>
 
     <!-- If true, stored fields that are not requested will be loaded lazily.
 
@@ -247,7 +255,7 @@
          requests matching documents 10 through 19, and queryWindowSize is 50,
          then documents 0 through 49 will be collected and cached.  Any further
          requests in that range can be satisfied via the cache.  -->
-    <queryResultWindowSize>50</queryResultWindowSize>
+    <queryResultWindowSize>60</queryResultWindowSize>
 
     <!-- Maximum number of documents to cache for any entry in the
          queryResultCache. -->
@@ -292,8 +300,6 @@
          warming. -->
     <useColdSearcher>true</useColdSearcher>
 
-    <FieldValueCache>50000</FieldValueCache>
-
     <!-- Maximum number of searchers that may be warming in the background
       concurrently.  An error is returned if this limit is exceeded. Recommend
       1-2 for read-only slaves, higher for masters w/o cache warming. -->
@@ -308,7 +314,9 @@
     -->
   <requestDispatcher handleSelect="true">
     <!--Make sure your system has some authentication before enabling remote streaming!  -->
-    <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048000" formdataUploadLimitInKB="2048"/>
+    <requestParsers enableRemoteStreaming="true"
+                    multipartUploadLimitInKB="2048000"
+                    formdataUploadLimitInKB="2048"/>
 
     <!-- Set HTTP caching related parameters (for proxy caches and clients).
 
@@ -317,7 +325,8 @@
          <cacheControl>
     -->
     <!-- <httpCaching never304="true"> -->
-    <httpCaching lastModifiedFrom="openTime" etagSeed="Solr">
+    <httpCaching lastModifiedFrom="openTime"
+                 etagSeed="Solr">
        <!-- lastModFrom="openTime" is the default, the Last-Modified value
             (and validation against If-Modified-Since requests) will all be
             relative to when the current Searcher was opened.
@@ -367,6 +376,8 @@
       <str name="spellcheck.extendedResults">true</str>
       <str name="spellcheck.onlyMorePopular">true</str>
       <str name="spellcheck.count">20</str>
+      <str name="q.op">AND</str>
+      <str name="df">allfields</str>
     </lst>
     <arr name="last-components">
       <str>spellcheck</str>
@@ -527,7 +538,9 @@
            field value analysis will be marked as "matched" for every
            token that is produces by the query analysis
    -->
-  <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler"/>
+  <requestHandler name="/analysis/field"
+                  startup="lazy"
+                  class="solr.FieldAnalysisRequestHandler" />
 
 
   <!-- Document Analysis Handler
@@ -560,7 +573,9 @@
     true, all field tokens that match the query tokens will be marked
     as a "match".
   -->
-  <requestHandler name="/analysis/document" class="solr.DocumentAnalysisRequestHandler" startup="lazy"/>
+  <requestHandler name="/analysis/document"
+                  class="solr.DocumentAnalysisRequestHandler"
+                  startup="lazy" />
 
 
   <!-- ping/healthcheck -->
@@ -645,70 +660,5 @@
     <healthcheck type="file">server-enabled</healthcheck>
     -->
   </admin>
-
-  <!-- Update request handler.  
-  
-       Note: Since solr1.1 requestHandlers requires a valid content type header if posted in 
-       the body. For example, curl now requires: -H 'Content-type:text/xml; charset=utf-8'
-       The response format differs from solr1.1 formatting and returns a standard error code.
-       
-       To enable solr1.1 behavior, remove the /update handler or change its path
-    -->
-  <!-- <requestHandler name="/update" class="solr.XmlUpdateRequestHandler" /> -->
-  <!-- REPLACE -->
-  <requestHandler name="/update" class="solr.UpdateRequestHandler"/>
-
-  <!-- CSV update handler, loaded on demand -->
-  <!--<requestHandler name="/update/csv" class="solr.CSVRequestHandler" startup="lazy"/>-->
-
-
-  <!-- 
-   Admin Handlers - This will register all the standard admin RequestHandlers.  Adding 
-   this single handler is equivolent to registering:
-   
-  <requestHandler name="/admin/luke"       class="org.apache.solr.handler.admin.LukeRequestHandler" />
-  <requestHandler name="/admin/system"     class="org.apache.solr.handler.admin.SystemInfoHandler" />
-  <requestHandler name="/admin/plugins"    class="org.apache.solr.handler.admin.PluginInfoHandler" />
-  <requestHandler name="/admin/threads"    class="org.apache.solr.handler.admin.ThreadDumpHandler" />
-  <requestHandler name="/admin/properties" class="org.apache.solr.handler.admin.PropertiesRequestHandler" />
-  <requestHandler name="/admin/file"       class="org.apache.solr.handler.admin.ShowFileRequestHandler" >
-  
-  If you wish to hide files under ${solr.home}/conf, explicitly register the ShowFileRequestHandler using:
-  <requestHandler name="/admin/file" class="org.apache.solr.handler.admin.ShowFileRequestHandler" >
-    <lst name="invariants">
-     <str name="hidden">synonyms.txt</str> 
-     <str name="hidden">anotherfile.txt</str> 
-    </lst>
-  </requestHandler>
-  -->
-  <!--<requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers"/>-->
-
-  <requestHandler class="org.apache.solr.handler.dataimport.DataImportHandler" name="/dataimport">
-    <lst name="defaults">
-      <str name="config">./conf/dataimport-config.xml</str>
-    </lst>
-  </requestHandler>
-
-  <!--
-  <requestHandler class="org.apache.solr.handler.component.SearchHandler" name="/suggest">
-    <lst name="defaults">
-      <str name="spellcheck">true</str>
-      <str name="spellcheck.dictionary">default</str>
-      <str name="spellcheck.onlyMorePopular">true</str>
-      <str name="spellcheck.count">5</str>
-      <str name="spellcheck.collate">true</str>
-    </lst>
-    <arr name="components">
-      <str>spellcheck</str>
-    </arr>
-  </requestHandler>
-  -->
-
-  <updateRequestProcessorChain name="uuid">
-    <processor class="solr.UUIDUpdateProcessorFactory">
-      <str name="fieldName">id</str>
-    </processor>
-    <processor class="solr.RunUpdateProcessorFactory"/>
-  </updateRequestProcessorChain>
 
 </config>
