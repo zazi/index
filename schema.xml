@@ -190,11 +190,13 @@ replace="all"
     <field name="spelling" type="textSpell" indexed="true" stored="true" multiValued="true"/>
     <field name="spellingShingle" type="textSpellShingle" indexed="true" stored="true" multiValued="true"/>
     <!-- Institutional Fields -->
+    <!-- institution is an optional field (in finc context), it only has values, if institutions want to have in their catalogue -->
     <field name="institution" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="building" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <!-- Generic Fields -->
     <field name="language" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <!-- format is an optional field (in finc context), it only has values, if the applied algorithm for format determination delivers some values -->
     <field name="format" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="author" type="textProper" indexed="true" stored="true" multiValued="true" termVectors="true"/>
     <!-- author_variant is a VuFind standard Solr schema field, but is not utilized in finc context -->
@@ -291,6 +293,7 @@ replace="all"
     <field name="is_hierarchy_title" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
     <field name="title_in_hierarchy" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="hierarchy_browse" type="string" indexed="true" stored="false" multiValued="true" docValues="true"/>
+    <!-- recordtype is an optional field (in finc context), it only has a value, if the field 'fullrecord' contains the original record as value -->
     <!-- Used for loading correct record driver -->
     <field name="recordtype" type="string" indexed="false" stored="true" docValues="true"/>
     <!-- Tracking fields to keep track of oldest and most recent index times -->
