@@ -210,8 +210,11 @@ replace="all"
     <field name="title_sub" type="text" indexed="true" stored="true"/>
     <field name="title_short" type="text" indexed="true" stored="true"/>
     <field name="title_full" type="text" indexed="true" stored="true"/>
+    <!-- title_full_unstemmed is a field that will be filled by copyfields only (actually from title_full), i.e., separate mappings are not really necessary -->
     <field name="title_full_unstemmed" type="textProper" indexed="true" stored="true"/>
+    <!-- title_fullStr is a field that will be filled by copyfields only (actually from title_full), i.e., separate mappings are not really necessary -->
     <field name="title_fullStr" type="string" indexed="true" stored="true" docValues="true"/>
+    <!-- title_auth is a VuFind standard Solr schema field, but is not utilized in finc context -->
     <field name="title_auth" type="text" indexed="true" stored="true"/>
     <field name="physical" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="publisher" type="textProper" indexed="true" stored="true" multiValued="true"/>
