@@ -180,7 +180,7 @@ replace="all"
     <!-- Required by Solr 4.x -->
     <field name="_version_" type="long" indexed="true" stored="true"/>
     <!-- Core Fields  -->
-    <field name="id" type="string" indexed="true" stored="true"/>
+    <field name="id" type="string" indexed="true" stored="true" required="true"/>
     <field name="fullrecord" type="string" indexed="false" stored="true"/>
     <field name="marc_error" type="string" indexed="false" stored="true" multiValued="true"/>
     <field name="allfields" type="text" indexed="true" stored="false" multiValued="true"/>
@@ -205,7 +205,7 @@ replace="all"
     <!-- author_facet is a field that will be filled by copyfields only (actually from author, author2, author_corporate and author_corporate2), i.e., separate mappings are not really necessary -->
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
-    <field name="title" type="text" indexed="true" stored="true"/>
+    <field name="title" type="text" indexed="true" stored="true" required="true"/>
     <field name="title_sort" type="textSort" indexed="true" stored="true"/>
     <field name="title_sub" type="text" indexed="true" stored="true"/>
     <field name="title_short" type="text" indexed="true" stored="true"/>
@@ -323,7 +323,7 @@ replace="all"
     <field name="imprint" type="string" indexed="false" stored="true" multiValued="false" docValues="true"/>
     <field name="ismn" type="isn" indexed="true" stored="true" multiValued="true"/>
     <field name="itemdata" type="string" indexed="false" stored="true" docValues="true"/>
-    <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <field name="mega_collection" type="string" indexed="true" stored="true" multiValued="true" docValues="true" required="true"/>
     <field name="misc_dech1" type="codetokenized" indexed="true" stored="false" multiValued="true"/>
     <field name="multipart_link" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
     <field name="multipart_part" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
@@ -340,7 +340,7 @@ replace="all"
     <field name="rvk_path" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="series_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
-    <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true" required="true"/>
     <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
     <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
