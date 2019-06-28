@@ -316,7 +316,8 @@ replace="all"
     <field name="barcode" type="code" indexed="true" stored="true" multiValued="true"/>
     <field name="dissertation_note" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="film_heading" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-    <field name="finc_class_facet" default="not assigned" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
+    <!-- finc_class_facet is an optional field (in finc context), it only has values, if the applied algorithm for finc class facet determination delivers some values -->
+    <field name="finc_class_facet" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="footnote" type="text" indexed="true" stored="true" multiValued="true"/>
     <field name="geogr_code" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="geogr_code_person" default="not assigned" type="textFacet" indexed="true" stored="true" multiValued="true"/>
@@ -340,7 +341,8 @@ replace="all"
     <field name="rvk_path" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="series_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="signatur" type="code" indexed="true" stored="true" multiValued="true"/>
-    <field name="source_id" default="error" type="string" indexed="true" stored="true" multiValued="false" docValues="true" required="true"/>
+    <!-- source_id is required field (in finc context), i.e., you need to ensure that this field gets a value via a mapping (i.e. before indexing) -->
+    <field name="source_id" type="string" indexed="true" stored="true" multiValued="false" docValues="true" required="true"/>
     <field name="timecode" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="title_orig" type="textProper" indexed="true" stored="true" multiValued="false"/>
     <field name="title_uniform" type="text" indexed="true" stored="true" multiValued="false"/>
