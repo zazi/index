@@ -206,10 +206,10 @@ replace="all"
     <field name="author_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
     <field name="author_sort" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="title" type="text" indexed="true" stored="true" required="true"/>
-    <field name="title_sort" type="textSort" indexed="true" stored="true"/>
+    <field name="title_sort" type="textSort" indexed="true" stored="true" required="true"/>
     <field name="title_sub" type="text" indexed="true" stored="true"/>
-    <field name="title_short" type="text" indexed="true" stored="true"/>
-    <field name="title_full" type="text" indexed="true" stored="true"/>
+    <field name="title_short" type="text" indexed="true" stored="true" required="true"/>
+    <field name="title_full" type="text" indexed="true" stored="true" required="true"/>
     <!-- title_full_unstemmed is a field that will be filled by copyfields only (actually from title_full), i.e., separate mappings are not really necessary -->
     <field name="title_full_unstemmed" type="textProper" indexed="true" stored="true"/>
     <!-- title_fullStr is a field that will be filled by copyfields only (actually from title_full), i.e., separate mappings are not really necessary -->
